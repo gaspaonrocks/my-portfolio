@@ -1,37 +1,85 @@
-import React, { Component } from 'react'
-import { NavLink } from 'react-router-dom';
-import { Menu, Segment, Dropdown, Icon } from 'semantic-ui-react'
+import React, { Component } from "react";
+import { NavLink } from "react-router-dom";
+import { Menu, Segment, Dropdown, Icon } from "semantic-ui-react";
 
 export default class Navbar extends Component {
-  state = { activeItem: 'home' }
+  state = { activeItem: "home" };
 
-  handleItemClick = (e, { name }) => this.setState({ activeItem: name })
+  handleItemClick = (e, { name }) => {
+    this.setState({ activeItem: name });
+    document
+      .querySelector("div[name='gallery']")
+      .setAttribute("aria-expanded", "false");
+  };
 
   render() {
-    const { activeItem } = this.state
+    const { activeItem } = this.state;
 
     return (
-      <Menu inverted color="grey" pointing secondary>
-        <Menu.Item name='home' as={NavLink} to="/home" active={activeItem === 'home'} onClick={this.handleItemClick} />
-        <Menu.Item name='education' as={NavLink} to="/education" active={activeItem === 'education'} onClick={this.handleItemClick} />
-        <Menu.Item name='experience' as={NavLink} to="/experience" active={activeItem === 'experience'} onClick={this.handleItemClick} />
-        <Dropdown item name='gallery' text='Gallery' onClick={this.handleItemClick} simple>
+      <Menu secondary pointing>
+        <Menu.Item
+          name="home"
+          as={NavLink}
+          to="/home"
+          active={activeItem === "home"}
+          onClick={this.handleItemClick}
+        />
+        <Menu.Item
+          name="education"
+          as={NavLink}
+          to="/education"
+          active={activeItem === "education"}
+          onClick={this.handleItemClick}
+        />
+        <Menu.Item
+          name="experience"
+          as={NavLink}
+          to="/experience"
+          active={activeItem === "experience"}
+          onClick={this.handleItemClick}
+        />
+        <Dropdown pointing name="gallery" text="Gallery" item>
           <Dropdown.Menu>
             <Dropdown.Item>
-              <Icon name='dropdown' />
-              <span className='text'>New</span>
-              <Dropdown.Menu>
-                <Dropdown.Item>Document</Dropdown.Item>
-                <Dropdown.Item>Image</Dropdown.Item>
-              </Dropdown.Menu>
+              <Dropdown text="New">
+                <Dropdown.Menu>
+                  <Dropdown.Item>Document</Dropdown.Item>
+                  <Dropdown.Item>Image</Dropdown.Item>
+                </Dropdown.Menu>
+              </Dropdown>
             </Dropdown.Item>
-            <Dropdown.Item as={NavLink} to="/hackouphene" >Hackouphene</Dropdown.Item>
-            <Dropdown.Item as={NavLink} to="/vue-project" >Vue project</Dropdown.Item>
+
+            <Dropdown.Item
+              as={NavLink}
+              to="/hackouphene"
+              name="hackouphene"
+              onClick={this.handleItemClick}
+            >
+              Hackouphene
+            </Dropdown.Item>
+
+            <Dropdown.Item
+              as={NavLink}
+              to="/vue-project"
+              name="vue-project"
+              onClick={this.handleItemClick}
+            >
+              Vue project
+            </Dropdown.Item>
+
             <Dropdown.Divider />
-            <Dropdown.Item as={NavLink} to="/pixi-project" >PixiGame Project</Dropdown.Item>
+
+            <Dropdown.Item
+              as={NavLink}
+              to="/pixi-project"
+              name="pixi-project"
+              onClick={this.handleItemClick}
+            >
+              PixiGame Project
+            </Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
       </Menu>
-    )
+    );
   }
 }
