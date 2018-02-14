@@ -1,12 +1,22 @@
 import React, { Component } from "react";
 import { Grid, Container, Image } from "semantic-ui-react";
 
+import axios from "axios";
+
 export default class Home extends Component {
+  constructor() {
+    super();
+    this.state = { data: {} };
+  }
+  componentDidMount = () => {
+    this.fetchData();
+  };
   render() {
+    console.log(this.state);
     return (
       <Container fluid>
         <h1>Hello Home !</h1>
-        <Grid columns='equal' padded>
+        <Grid columns="equal" padded>
           <Grid.Column>
             <Image src={require("../../portrait.jpg")} size="big" />
           </Grid.Column>
@@ -23,4 +33,13 @@ export default class Home extends Component {
       </Container>
     );
   }
+  fetchData = () => {
+    return axios
+      .get("http://localhost:3004/posts")
+      .then(response => {
+        console.log(response);
+        this.setState({ data: response.data });
+      })
+      .catch(error => console.log(error));
+  };
 }
