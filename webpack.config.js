@@ -1,12 +1,16 @@
 const webpack = require("webpack");
 const path = require("path");
+const ReactLoadablePlugin = require("react-loadable/webpack")
+  .ReactLoadablePlugin;
+const UglifyJSPlugin = require("uglifyjs-webpack-plugin");
 
 module.exports = {
   entry: "./src/index.js",
   devtool: "inline-source-map",
   output: {
     path: path.resolve(__dirname, "dist"),
-    filename: "my-portfolio.bundle.js"
+    filename: "my-portfolio.bundle.js",
+    chunkFilename: "[name].bundle.js"
   },
   module: {
     rules: [
@@ -28,7 +32,11 @@ module.exports = {
   plugins: [
     new webpack.optimize.UglifyJsPlugin(),
     new webpack.NamedModulesPlugin(),
-    new webpack.HotModuleReplacementPlugin()
+    new webpack.HotModuleReplacementPlugin(),
+    new ReactLoadablePlugin({
+      filename: "./dist/react-loadable.json"
+    }),
+    new UglifyJSPlugin()
   ],
   devServer: {
     contentBase: path.join(__dirname, "dist"),
