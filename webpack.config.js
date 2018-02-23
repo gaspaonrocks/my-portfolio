@@ -25,10 +25,15 @@ module.exports = {
       }
     ]
   },
-  plugins: [new webpack.optimize.UglifyJsPlugin()],
+  plugins: [
+    new webpack.optimize.UglifyJsPlugin(),
+    new webpack.NamedModulesPlugin(),
+    new webpack.HotModuleReplacementPlugin()
+  ],
   devServer: {
     contentBase: path.join(__dirname, "dist"),
     compress: true,
-    port: 4000
+    port: 4000,
+    hot: true
   }
 };
