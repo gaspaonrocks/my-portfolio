@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
-import { Menu, Segment, Dropdown, Icon } from "semantic-ui-react";
+import { Menu, Dropdown } from "semantic-ui-react";
 
 export default class Navbar extends Component {
   constructor() {
@@ -22,21 +22,21 @@ export default class Navbar extends Component {
           name="home"
           as={NavLink}
           to="/home"
-          active={this.state.activeItem === "home"}
+          active={activeItem === "home"}
           onClick={this.handleItemClick}
         />
         <Menu.Item
           name="education"
           as={NavLink}
           to="/education"
-          active={this.state.activeItem === "education"}
+          active={activeItem === "education"}
           onClick={this.handleItemClick}
         />
         <Menu.Item
           name="experience"
           as={NavLink}
           to="/experience"
-          active={this.state.activeItem === "experience"}
+          active={activeItem === "experience"}
           onClick={this.handleItemClick}
         />
         <Dropdown pointing name="gallery" text="Gallery" item>

@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { BrowserRouter } from "react-router-dom";
 
-import logo from "./logo.svg";
 import "semantic-ui-css/semantic.min.css";
 import "./App.css";
 
