@@ -17,7 +17,7 @@ export default class Home extends Component {
         <h1>Hello Home !</h1>
         <Grid columns="equal" padded>
           <Grid.Column>
-            <Image src={require("../../portrait.jpg")} size="big" />
+            <Image src={require("../../assets/img/portrait.jpg")} size="big" />
           </Grid.Column>
           <Grid.Column width={12}>
             <p>

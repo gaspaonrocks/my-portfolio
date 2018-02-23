@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Routes from "../../config/Routes";
 import { Container } from "semantic-ui-react";
+import './Main.css';
 
 export default class MainView extends Component {
   constructor(props) {
@@ -8,7 +9,7 @@ export default class MainView extends Component {
   }
   render() {
     return (
-      <Container fluid>
+      <Container fluid className="container">
         <Routes />
       </Container>
     );
