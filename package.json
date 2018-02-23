@@ -15,11 +15,18 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "webpack": "webpack",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "serve": "json-server ./db.json --port 3004"
   },
   "devDependencies": {
-    "json-server": "^0.12.1"
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
+    "json-server": "^0.12.1",
+    "webpack": "^3.11.0",
+    "webpack-dev-server": "^2.11.1"
   }
 }

@@ -8,11 +8,10 @@ export default class Home extends Component {
     super();
     this.state = { data: {} };
   }
-  componentDidMount = () => {
-    this.fetchData();
-  };
+  componentDidMount() {
+    //this.fetchData();
+  }
   render() {
-    console.log(this.state);
     return (
       <Container fluid>
         <h1>Hello Home !</h1>
@@ -33,7 +32,7 @@ export default class Home extends Component {
       </Container>
     );
   }
-  fetchData = () => {
+  fetchData() {
     return axios
       .get("http://localhost:3004/posts")
       .then(response => {
@@ -41,5 +40,5 @@ export default class Home extends Component {
         this.setState({ data: response.data });
       })
       .catch(error => console.log(error));
-  };
+  }
 }

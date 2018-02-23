@@ -3,14 +3,15 @@ import { NavLink } from "react-router-dom";
 import { Menu, Segment, Dropdown, Icon } from "semantic-ui-react";
 
 export default class Navbar extends Component {
-  state = { activeItem: "home" };
+  constructor() {
+    super();
+    this.state = { activeItem: "" };
+    this.handleItemClick = this.handleItemClick.bind(this);
+  }
 
-  handleItemClick = (e, { name }) => {
+  handleItemClick(e, { name }) {
     this.setState({ activeItem: name });
-    document
-      .querySelector("div[name='gallery']")
-      .setAttribute("aria-expanded", "false");
-  };
+  }
 
   render() {
     const { activeItem } = this.state;
@@ -21,21 +22,21 @@ export default class Navbar extends Component {
           name="home"
           as={NavLink}
           to="/home"
-          active={activeItem === "home"}
+          active={this.state.activeItem === "home"}
           onClick={this.handleItemClick}
         />
         <Menu.Item
           name="education"
           as={NavLink}
           to="/education"
-          active={activeItem === "education"}
+          active={this.state.activeItem === "education"}
           onClick={this.handleItemClick}
         />
         <Menu.Item
           name="experience"
           as={NavLink}
           to="/experience"
-          active={activeItem === "experience"}
+          active={this.state.activeItem === "experience"}
           onClick={this.handleItemClick}
         />
         <Dropdown pointing name="gallery" text="Gallery" item>
