@@ -1,11 +1,22 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
-import { Menu, Dropdown } from "semantic-ui-react";
+import {
+  Menu,
+  Dropdown,
+  Icon,
+  Button,
+  Sidebar,
+  Segment,
+  Header
+} from "semantic-ui-react";
 
 export default class Navbar extends Component {
   constructor() {
     super();
-    this.state = { activeItem: "" };
+    this.state = {
+      activeItem: "",
+      vertical: false
+    };
     this.handleItemClick = this.handleItemClick.bind(this);
   }
 
@@ -14,72 +25,20 @@ export default class Navbar extends Component {
   }
 
   render() {
-    const { activeItem } = this.state;
-
     return (
-      <Menu secondary pointing>
-        <Menu.Item
-          name="home"
-          as={NavLink}
-          to="/home"
-          active={activeItem === "home"}
-          onClick={this.handleItemClick}
-        />
-        <Menu.Item
-          name="education"
-          as={NavLink}
-          to="/education"
-          active={activeItem === "education"}
-          onClick={this.handleItemClick}
-        />
-        <Menu.Item
-          name="experience"
-          as={NavLink}
-          to="/experience"
-          active={activeItem === "experience"}
-          onClick={this.handleItemClick}
-        />
-        <Dropdown pointing name="gallery" text="Gallery" item>
-          <Dropdown.Menu>
-            <Dropdown.Item>
-              <Dropdown text="New">
-                <Dropdown.Menu>
-                  <Dropdown.Item>Document</Dropdown.Item>
-                  <Dropdown.Item>Image</Dropdown.Item>
-                </Dropdown.Menu>
-              </Dropdown>
-            </Dropdown.Item>
-
-            <Dropdown.Item
+      <Menu stackable secondary pointing vertical={this.state.vertical}>
+        {["home", "education", "experience", "gallery"].map(e => {
+          return (
+            <Menu.Item
+              key={e}
+              name={e}
               as={NavLink}
-              to="/hackouphene"
-              name="hackouphene"
+              to={`/${e}`}
+              active={this.state.activeItem === e}
               onClick={this.handleItemClick}
-            >
-              Hackouphene
-            </Dropdown.Item>
-
-            <Dropdown.Item
-              as={NavLink}
-              to="/vue-project"
-              name="vue-project"
-              onClick={this.handleItemClick}
-            >
-              Vue project
-            </Dropdown.Item>
-
-            <Dropdown.Divider />
-
-            <Dropdown.Item
-              as={NavLink}
-              to="/pixi-project"
-              name="pixi-project"
-              onClick={this.handleItemClick}
-            >
-              PixiGame Project
-            </Dropdown.Item>
-          </Dropdown.Menu>
-        </Dropdown>
+            />
+          );
+        })}
       </Menu>
     );
   }

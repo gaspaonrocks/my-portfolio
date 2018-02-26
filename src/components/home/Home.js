@@ -15,7 +15,7 @@ export default class Home extends Component {
     return (
       <Container fluid>
         <h1>Hello Home !</h1>
-        <Grid columns="equal" padded>
+        <Grid stackable columns="equal" padded>
           <Grid.Column>
             <Image src={require("../../assets/img/portrait.jpg")} size="big" />
           </Grid.Column>
