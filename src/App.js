@@ -27,10 +27,10 @@ class App extends Component {
     this.state = { visible: false };
   }
   handleStatusChange(e) {
-    // this.setState({ visible: !this.state.visible });
-    this.state.visible === true
+    /* this.state.visible === true
       ? this.setState({ visible: false })
-      : this.setState({ visible: true });
+      : this.setState({ visible: true }); */
+    this.setState(prevState => ({ visible: !prevState.visible }));
   }
   render() {
     return (

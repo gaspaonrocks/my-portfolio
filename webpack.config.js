@@ -1,14 +1,17 @@
 const webpack = require("webpack");
 const path = require("path");
+const nodeExternals = require("webpack-node-externals");
 const ReactLoadablePlugin = require("react-loadable/webpack")
   .ReactLoadablePlugin;
 const UglifyJSPlugin = require("uglifyjs-webpack-plugin");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 
-module.exports = {
+let clientConfig = {
+  target: "web",
   entry: "./src/index.js",
   devtool: "inline-source-map",
   output: {
-    path: path.resolve(__dirname, "dist"),
+    path: path.resolve(__dirname, "dist/public"),
     filename: "my-portfolio.bundle.js",
     chunkFilename: "[name].bundle.js"
   },
@@ -25,6 +28,7 @@ module.exports = {
       },
       {
         test: /.html$/,
+        include: path.resolve("public/"),
         use: "html-loader"
       }
     ]
@@ -33,8 +37,12 @@ module.exports = {
     new webpack.optimize.UglifyJsPlugin(),
     new webpack.NamedModulesPlugin(),
     new webpack.HotModuleReplacementPlugin(),
+    new HtmlWebpackPlugin({
+      template: path.resolve("public/index.html"),
+      favicon: path.resolve("public/favicon.png")
+    }),
     new ReactLoadablePlugin({
-      filename: "./dist/react-loadable.json"
+      filename: path.resolve(__dirname, "dist/public/react-loadable.json")
     }),
     new UglifyJSPlugin()
   ],
@@ -45,3 +53,24 @@ module.exports = {
     hot: true
   }
 };
+
+let serverConfig = {
+  target: "node",
+  node: {
+    __dirname: true
+  },
+  entry: {
+    server: path.resolve("server.js")
+  },
+  output: {
+    path: path.resolve("dist"),
+    filename: "server.js"
+  },
+  externals: [nodeExternals()],
+  module: {
+    rules: [{ test: /\.js$/, exclude: /node_modules/, use: "babel-loader" }]
+  },
+  plugins: []
+};
+
+module.exports = [clientConfig, serverConfig];
