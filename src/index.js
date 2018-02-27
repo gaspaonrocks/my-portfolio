@@ -13,7 +13,10 @@ const LoadApp = Loadable({
 });
 
 const hotReloading = MainComponent => {
-  ReactDOM.render(<MainComponent />, document.getElementById("root"));
+  ReactDOM.render(
+    <MainComponent />,
+    document.getElementById("root")
+  );
 };
 
 hotReloading(LoadApp);

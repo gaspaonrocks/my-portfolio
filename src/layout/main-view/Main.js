@@ -9,7 +9,7 @@ export default class MainView extends Component {
   }
   render() {
     return (
-      <Container fluid className="container">
+      <Container fluid>
         <Header as="h3">Application Content</Header>
         <Routes />
       </Container>

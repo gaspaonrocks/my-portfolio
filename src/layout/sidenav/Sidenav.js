@@ -37,6 +37,16 @@ export default class Sidenav extends Component {
     };
   }
 
+  componentDidMount() {
+    if (window.screen.availWidth <= 750) {
+      this.setState({
+        direction: "left",
+        vertical: true,
+        animation: "overlay"
+      });
+    }
+  }
+
   render() {
     return (
       <div>

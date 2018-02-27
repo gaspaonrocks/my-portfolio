@@ -10,7 +10,7 @@ import debug from 'debug';
 let app = express();
 
 // Tell Express where is our favicon
-app.use(favicon('dist/favicon.png'));
+app.use(favicon('dist/public/favicon.png'));
 // Tell Express that messages bodies will be JSON formatted
 app.use(bodyParser.json());
 // Only parses urlencoded bodies (gzip and deflate enabled)

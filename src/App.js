@@ -27,9 +27,6 @@ class App extends Component {
     this.state = { visible: false };
   }
   handleStatusChange(e) {
-    /* this.state.visible === true
-      ? this.setState({ visible: false })
-      : this.setState({ visible: true }); */
     this.setState(prevState => ({ visible: !prevState.visible }));
   }
   render() {

@@ -34,7 +34,6 @@ let clientConfig = {
     ]
   },
   plugins: [
-    new webpack.optimize.UglifyJsPlugin(),
     new webpack.NamedModulesPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({
@@ -45,13 +44,7 @@ let clientConfig = {
       filename: path.resolve(__dirname, "dist/public/react-loadable.json")
     }),
     new UglifyJSPlugin()
-  ],
-  devServer: {
-    contentBase: path.join(__dirname, "dist"),
-    compress: true,
-    port: 4000,
-    hot: true
-  }
+  ]
 };
 
 let serverConfig = {
@@ -70,7 +63,13 @@ let serverConfig = {
   module: {
     rules: [{ test: /\.js$/, exclude: /node_modules/, use: "babel-loader" }]
   },
-  plugins: []
+  plugins: [new UglifyJSPlugin()],
+  devServer: {
+    contentBase: path.join(__dirname, "dist"),
+    compress: true,
+    port: 4000,
+    hot: true
+  }
 };
 
 module.exports = [clientConfig, serverConfig];
