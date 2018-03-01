@@ -11,11 +11,10 @@ import {
 } from "semantic-ui-react";
 
 export default class Navbar extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
-      activeItem: "",
-      vertical: false
+      activeItem: ""
     };
     this.handleItemClick = this.handleItemClick.bind(this);
   }
@@ -26,7 +25,7 @@ export default class Navbar extends Component {
 
   render() {
     return (
-      <Menu stackable secondary pointing vertical={this.state.vertical}>
+      <Menu secondary pointing vertical={this.props.vertical}>
         {["home", "education", "experience", "gallery"].map(e => {
           return (
             <Menu.Item

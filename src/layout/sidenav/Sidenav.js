@@ -32,17 +32,15 @@ export default class Sidenav extends Component {
     this.state = {
       visible: this.props.visible,
       direction: "top",
-      vertical: false,
-      animation: "push"
+      vertical: false
     };
   }
 
   componentDidMount() {
-    if (window.screen.availWidth <= 750) {
+    if (window.screen.availWidth <= 720) {
       this.setState({
         direction: "left",
-        vertical: true,
-        animation: "overlay"
+        vertical: true
       });
     }
   }
@@ -53,7 +51,7 @@ export default class Sidenav extends Component {
         <Sidebar.Pushable as={Segment}>
           <Sidebar
             as={Menu}
-            animation={this.state.animation}
+            animation="overlay"
             width="thin"
             visible={this.props.visible}
             icon="labeled"

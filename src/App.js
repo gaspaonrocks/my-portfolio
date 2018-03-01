@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { HashRouter } from "react-router-dom";
+import { Grid } from "semantic-ui-react";
 
 import "semantic-ui-css/semantic.min.css";
 import "./App.css";
@@ -26,9 +27,11 @@ class App extends Component {
     this.handleStatusChange = this.handleStatusChange.bind(this);
     this.state = { visible: false };
   }
+
   handleStatusChange(e) {
     this.setState(prevState => ({ visible: !prevState.visible }));
   }
+
   render() {
     return (
       <HashRouter basename="/">
