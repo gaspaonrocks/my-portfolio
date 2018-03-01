@@ -5,6 +5,7 @@ const ReactLoadablePlugin = require("react-loadable/webpack")
   .ReactLoadablePlugin;
 const UglifyJSPlugin = require("uglifyjs-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const CleanWebpackPlugin = require("clean-webpack-plugin");
 
 let clientConfig = {
   target: "web",
@@ -63,7 +64,7 @@ let serverConfig = {
   module: {
     rules: [{ test: /\.js$/, exclude: /node_modules/, use: "babel-loader" }]
   },
-  plugins: [new UglifyJSPlugin()],
+  plugins: [new UglifyJSPlugin(), new CleanWebpackPlugin(['dist'])],
   devServer: {
     contentBase: path.join(__dirname, "dist"),
     compress: true,

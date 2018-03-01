@@ -9,6 +9,16 @@ import {
   Segment,
   Header
 } from "semantic-ui-react";
+import Loadable from "react-loadable";
+
+const data = ["home", "education", "experience", "gallery"];
+
+const LoadItem = Loadable({
+  loader: () => import("./Navbar.Item"),
+  loading() {
+    return <div>Loading...</div>;
+  }
+});
 
 export default class Navbar extends Component {
   constructor(props) {
@@ -25,14 +35,12 @@ export default class Navbar extends Component {
 
   render() {
     return (
-      <Menu secondary pointing vertical={this.props.vertical}>
-        {["home", "education", "experience", "gallery"].map(e => {
+      <Menu fluid compact secondary pointing vertical={this.props.vertical}>
+        {data.map(e => {
           return (
-            <Menu.Item
+            <LoadItem
               key={e}
               name={e}
-              as={NavLink}
-              to={`/${e}`}
               active={this.state.activeItem === e}
               onClick={this.handleItemClick}
             />
